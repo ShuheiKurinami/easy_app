@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Users</title>
+</head>
+<body>
+    <h1>All Users</h1>
+    <ul>
+        <% for(let user of users) { %>
+            <p>Name: <%= user.name %></p>
+        <% } %>
+
+        <!-- <% var para = '<p>Hello EJS!</p>'; %>
+<div><%= para %></div>
+<div><%- para %></div> -->
+    </ul>
+</body>
+</html>
