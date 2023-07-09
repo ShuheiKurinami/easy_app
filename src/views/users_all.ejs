@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>All Users</title>
+    <title>Button Event</title>
 </head>
 <body>
-    <h1>All Users</h1>
-    <ul>
-        <% for(let user of users) { %>
-            <p>Name: <%= user.name %></p>
-        <% } %>
+    <h1>To Do アプリ</h1>
+    <% tasks.forEach(function(user) { %>
+        <li><%= user.name %> <button id="<%= user.id %>" class="deleteButton">Delete</button></li>
+    <% }); %>
 
-        <!-- <% var para = '<p>Hello EJS!</p>'; %>
-<div><%= para %></div>
-<div><%- para %></div> -->
-    </ul>
+    <script>
+    // ボタン要素を取得
+    var buttons = document.getElementsByClassName('deleteButton');
+
+    // 各ボタンについてクリックイベントを監視
+    Array.from(buttons).forEach(function(button) {
+        button.addEventListener('click', function() {
+            // ボタンがクリックされたときの処理を記述
+            var id = this.id;  // ボタンのIDを取得
+            // fetchを使ってサーバにPOSTリクエストを送る
+            fetch('/delete', {  // /deleteは適切なエンドポイントに変更してください
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: id }),
+            })
+            .then((response) => response.json())
+            .then((data) => console.log('Success:', data))
+            .catch((error) => console.error('Error:', error));
+            });
+    });
+    </script>
 </body>
 </html>

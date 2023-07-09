@@ -1,7 +1,7 @@
 // src/index.ts
 import express from "express";
 import { createConnection } from "typeorm";
-import { User } from "./entity/User";
+import { Task } from "./entity/User";
 import { UserController } from "./controllers/UserController";
 import appRoot from "app-root-path";
 
@@ -13,11 +13,12 @@ app.get("/user", UserController.getAllUsers);
 app.get("/users_all", UserController.getAllUsers_All);
 app.set('view engine', 'ejs');
 app.set("views", appRoot.resolve("src/views"));
+app.post("/delete", UserController.deleteUser);
 
 createConnection({
     type: "sqlite",
     database: "database.sqlite",
-    entities: [User],
+    entities: [Task],
     synchronize: true,
 }).then(() => {
     app.post("/users", UserController.createUser);
