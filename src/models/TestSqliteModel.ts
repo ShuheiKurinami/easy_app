@@ -2,7 +2,7 @@ import sqlite3 from 'sqlite3';
 import { Database } from 'sqlite3';
 
 // Open a database connection
-let db = new sqlite3.Database('./database.sqlite', (err) => {
+let db = new sqlite3.Database('../database.sqlite', (err) => {
   if (err) {
     console.error(err.message);
     process.exit(-1);

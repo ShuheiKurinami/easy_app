@@ -28,7 +28,7 @@ router.get('/test', (req, res, next) => {
 router.get('/test/sqlite/:user', (req: Request, res: Response, next: NextFunction) => {
   const { user } = req.params;
   console.log(user)
-  db.get('SELECT * FROM users WHERE user = ?', [user], (err, row) => {
+  db.get('SELECT * FROM users WHERE name = ?', [user], (err, row) => {
     if (err) {
       return next(err);
     }
@@ -41,6 +41,21 @@ router.get('/test/sqlite/:user', (req: Request, res: Response, next: NextFunctio
   });
 });
 
+router.get('/task/sqlite/:id', (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
+  console.log(id)
+  db.get('SELECT * FROM task WHERE id = ?', [id], (err, row) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (row) {
+      res.status(200).send(row);
+    } else {
+      res.sendStatus(404);
+    }
+  });
+});
 // -------------------------------------------------
 //  以下、何のルーティングにもマッチしないorエラー
 // -------------------------------------------------

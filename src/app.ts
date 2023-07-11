@@ -37,7 +37,7 @@ app.get('/helloWorld', (req, res) => {
     res.status(200).send({ message: 'hello, world' });
 });
 
-let db = new sqlite3.Database('./database.sqlite', (err) => {
+let db = new sqlite3.Database('../database.sqlite', (err) => {
     if (err) {
       console.error(err.message);
       process.exit(-1);

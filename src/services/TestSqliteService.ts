@@ -13,7 +13,7 @@ export class TestSQLiteService {
     private db: Database;
   
     constructor() {
-      this.db = new sqlite3.Database('./database.sqlite');
+      this.db = new sqlite3.Database('../database.sqlite');
     }
   
     public run(): Promise<ITest[]> {
@@ -28,4 +28,5 @@ export class TestSQLiteService {
       });
     }
   }
+
   
